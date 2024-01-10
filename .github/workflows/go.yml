@@ -5,8 +5,5 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-go@v4
-      with:
-        go-version: '1.20'
-    - run: go build -v -o /usr/bin
+    - run: cd src && make && make install
 
