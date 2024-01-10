@@ -1,9 +1,9 @@
 name: build-wireguard-tools
 on: workflow_dispatch
 jobs:
-  build-wg:
+  build:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
-    - run: cd src && make && make install
+    - run: make && make install
 
