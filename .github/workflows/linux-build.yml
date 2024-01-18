@@ -1,7 +1,7 @@
 name: linux-build
 on: workflow_dispatch
 jobs:
-  build:
+  ubuntu_22-04:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:22.04
