@@ -18,4 +18,20 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: amnezia-wg-tools_ubuntu_22.04
+        path: /tmp/bin/        
+  alpine_3-19:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:3.19
+    steps:
+    - uses: actions/checkout@v3
+    - run: 
+        apk add linux-headers build-base &&
+        make && 
+        mkdir /tmp/bin &&
+        cp wg /tmp/bin/wg &&
+        cp wg-quick/linux.bash /tmp/bin/wg-quick
+    - uses: actions/upload-artifact@v3
+      with:
+        name: amnezia-wg-tools_ubuntu_22.04
         path: /tmp/bin/
