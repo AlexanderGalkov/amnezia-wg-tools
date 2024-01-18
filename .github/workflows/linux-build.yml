@@ -7,7 +7,4 @@ jobs:
       image: ubuntu:22.04
     steps:
     - uses: actions/checkout@v3
-    - run: cd src && make -e LDFLAGS=-static && make install -e DESTDIR=/tmp
-    - uses: actions/upload-artifact@v3
-      with:
-        path: /tmp/usr/bin/
+    - run: apt update && apt install build-essential && cd src && make
