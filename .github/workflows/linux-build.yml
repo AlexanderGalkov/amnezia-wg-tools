@@ -13,8 +13,9 @@ jobs:
         cd src && 
         make && 
         mkdir /tmp/bin &&
-        cp wg /tmp/bin/wg
+        cp wg /tmp/bin/wg &&
+        cp wg-quick/linux.bash /tmp/bin/wg-quick
     - uses: actions/upload-artifact@v3
       with:
-        name: amnezia-wg-tools_ubuntu22.04
+        name: amnezia-wg-tools_ubuntu_22.04
         path: /tmp/bin/
