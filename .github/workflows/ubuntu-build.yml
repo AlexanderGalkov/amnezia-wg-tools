@@ -38,19 +38,16 @@ jobs:
         uses: actions/download-artifact@v4
 
       - name: Calculate checksums
-        run: |
-          pwd &&
-          ls -l &&
-          for file in $(find ./ -type f); do openssl dgst -sha256 -r "$file" | awk '{print $1}' > "${file}.sha256"; done
+        run: for file in $(find ./ubuntu-22.04-amneziawg-tools/ -type f); do openssl dgst -sha256 -r "$file" | awk '{print $1}' > "${file}.sha256"; done
         
       - name: Zip files
-        run: ls -l
+        run: zip -r ubuntu-22.04-amneziawg-tools ubuntu-22.04-amneziawg-tools
 
       - name: Upload binaries to Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./ubuntu-22.04-amneziawg-tools/wg
+          file: ./ubuntu-22.04-amneziawg-tools.zip
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
