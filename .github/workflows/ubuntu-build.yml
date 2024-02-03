@@ -49,15 +49,13 @@ jobs:
         
       - name: Zip files
         working-directory: ./ubuntu-22.04-amneziawg-tools
-        run: |
-          for file in *; do zip -r ${file%.*}.zip  $file; done &&
-          ls -l
+        run: ls -l
 
       - name: Upload binaries to Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ubuntu-22.04-amneziawg-tools.zip
+          file: ./ubuntu-22.04-amneziawg-tools/wg
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
