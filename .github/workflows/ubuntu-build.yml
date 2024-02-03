@@ -43,7 +43,7 @@ jobs:
       - name: Zip files
         run: |
           ls -l &&
-          zip -r ubuntu-22.04-amneziawg-tools ubuntu-22.04-amneziawg-tools
+          zip -r "ubuntu-22.04-amneziawg-tools" "ubuntu-22.04-amneziawg-tools"
 
       - name: Upload binaries to Release
         uses: svenstaro/upload-release-action@v2
