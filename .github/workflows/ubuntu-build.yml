@@ -67,16 +67,16 @@ jobs:
         uses: actions/download-artifact@v4
 
       - name: Calculate checksums
-        run: for file in $(find ./${{ os }}-${{ release }}-amneziawg-tools/ -type f); do openssl dgst -sha256 -r "$file" | awk '{print $1}' > "${file}.sha256"; done
+        run: for file in $(find ./${{ matrix.os }}-${{ matrix.release }}-amneziawg-tools/ -type f); do openssl dgst -sha256 -r "$file" | awk '{print $1}' > "${file}.sha256"; done
         
       - name: Zip files
-        run: zip -r ${{ os }}-${{ release }}-amneziawg-tools.zip ${{ os }}-${{ release }}-amneziawg-tools
+        run: zip -r ${{ matrix.os }}-${{ matrix.release }}-amneziawg-tools.zip ${{ matrix.os }}-${{ matrix.release }}-amneziawg-tools
 
       - name: Upload binaries to Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./${{ os }}-${{ release }}-amneziawg-tools.zip
+          file: ./${{ matrix.os }}-${{ matrix.release }}-amneziawg-tools.zip
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
