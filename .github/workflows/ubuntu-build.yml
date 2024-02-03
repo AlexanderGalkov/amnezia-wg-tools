@@ -41,9 +41,7 @@ jobs:
         run: for file in $(find ./ubuntu-22.04-amneziawg-tools/ -type f); do openssl dgst -sha256 -r "$file" | awk '{print $1}' > "${file}.sha256"; done
         
       - name: Zip files
-        run: |
-          ls -l &&
-          zip -r "ubuntu-22.04-amneziawg-tools" "ubuntu-22.04-amneziawg-tools"
+        run: zip -r ubuntu-22.04-amneziawg-tools.zip ubuntu-22.04-amneziawg-tools
 
       - name: Upload binaries to Release
         uses: svenstaro/upload-release-action@v2
